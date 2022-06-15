@@ -1,5 +1,13 @@
 <script>
-	
+	let fname = 'Morad';
+	let lname = 'Alshammari';
+
+	$: fullname = `${fname} ${lname}`;
+
+	let items = [{id:1,title:'TV',price:100},{id:1,title:'phone',price:200},{id:1,title:'laptop',price:300},];
+	$: total = items.reduce((total, curr)=>(total = total+curr.price),0)
+	$: console.log(`Fullname is ${fname} ${lname}`);
+
 const formValues = {name: ' ',
 					profilesummary: ' ', 
 					country:' ', 
@@ -27,10 +35,28 @@ function submitForm(event){
 	
 </script>
 
+
+
 <main>
+	<button on:click={()=>{
+		fname = 'Mohammad';
+		lname = 'Morad';
+	}}>Change name</button>
+	<div>{fullname}</div>
+	<div>{fname} {lname}</div>
+	<button on:click={()=> {items = [...items, {id: 4, title: 'Mouse',price: 10}]}}>Add Item</button>
+	<div>total - {total}</div>
 	<div>
 		<pre>
 			{JSON.stringify(formValues,null,2)}
+			
+		</pre>
+	
+	</div>
+
+	<div>
+		<pre>
+			{JSON.stringify(items,null,2)}
 			
 		</pre>
 	
